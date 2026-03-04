@@ -1,6 +1,6 @@
 {...}: {
   perSystem = {pkgs, ...}: {
-    packages = let
+    packages.crop-transparency = let
       python = pkgs.python3.withPackages (ps: [
         ps.pillow
         ps.numpy

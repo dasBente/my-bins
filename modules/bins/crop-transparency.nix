@@ -1,6 +1,6 @@
 {...}: {
   perSystem = {pkgs, ...}: {
-    package = let
+    packages = let
       python = pkgs.python3.withPackages (ps: [
         ps.pillow
         ps.numpy

@@ -1,4 +1,4 @@
-{...}: {
+{
   perSystem = {pkgs, ...}: {
     packages.update-input =
       # https://github.com/vimjoyer/nix-update-input

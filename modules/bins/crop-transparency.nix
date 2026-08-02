@@ -7,7 +7,7 @@
       ]);
     in
       pkgs.writeShellScriptBin "crop-transparency" ''
-        ${python}/bin/python ${./_src/crop-transparency.py} "$@"
+        ${python}/bin/python ${./crop-transparency.py} "$@"
       '';
   };
 }

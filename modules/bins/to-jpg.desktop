@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Service
+Name=Convert to JPEG
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=image/*;
+Actions=ConvertToJpg;
+X-KDE-Priority=TopLevel
+
+[Desktop Action ConvertToJpg]
+Name=Convert to JPEG
+Icon=image-x-generic
+Exec=to-jpg %d

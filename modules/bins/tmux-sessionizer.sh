@@ -8,7 +8,7 @@ select_project() {
 if [[ $# -eq 1 ]]; then
     echo "$1"
 else
-    find "$PROJECTS_DIR" -mindepth 1 -maxdepth 1 -type d,l | ${pkgs.fzf}/bin/fzf
+    find "$PROJECTS_DIR" -mindepth 1 -maxdepth 1 -type d,l | fzf
 fi
 }
 

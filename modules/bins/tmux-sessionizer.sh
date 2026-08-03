@@ -34,7 +34,7 @@ manage_session() {
     fi
 
     # Attach or switch to session
-    if [[ -z $TMUX ]]; then
+    if [[ -z ${TMUX:-} ]]; then
         tmux attach -t "$session_name"
     else
         tmux switch-client -t "$session_name"
@@ -44,7 +44,7 @@ manage_session() {
     # Main execution
     main() {
     local selected
-    selected=$(select_project "$@")
+    selected=$(select_project "$@") || true
 
     # Exit if no selection
     if [[ -z $selected ]]; then
@@ -52,7 +52,7 @@ manage_session() {
     fi
 
     # Start new tmux session if none exists
-    if [[ -z $TMUX ]] && ! is_tmux_running; then
+    if [[ -z ${TMUX:-} ]] && ! is_tmux_running; then
         tmux new-session -s "$(sanitize_name "$selected")" -c "$selected"
         return 0
     fi

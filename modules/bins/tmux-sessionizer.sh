@@ -1,7 +1,7 @@
 
 #!/usr/bin/env bash
 # Configuration
-PROJECTS_DIR="${"$HOME/projects"}"
+PROJECTS_DIR="$HOME/projects"
 
 # Function to select a project
 select_project() {

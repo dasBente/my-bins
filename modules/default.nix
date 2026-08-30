@@ -1,12 +1,15 @@
 {lib, ...}: {
   perSystem = {
-    self',
     pkgs,
+    config,
     ...
   }: {
     packages.default = pkgs.symlinkJoin {
       name = "my-bins";
-      paths = lib.attrValues (lib.filterAttrs (n: v: n != "default") self'.packages);
+      paths = lib.pipe config.packages [
+        (lib.filterAttrs (n: _: n != "default"))
+        lib.attrValues
+      ];
     };
   };
 }

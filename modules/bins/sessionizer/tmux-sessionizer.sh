@@ -1,15 +1,10 @@
-
 #!/usr/bin/env bash
 # Configuration
 PROJECTS_DIR="$HOME/projects"
 
 # Function to select a project
 select_project() {
-if [[ $# -eq 1 ]]; then
-    echo "$1"
-else
-    find "$PROJECTS_DIR" -mindepth 1 -maxdepth 1 -type d,l | fzf
-fi
+    "${SESSIONIZER_PICKER:-fzf}"
 }
 
 # Function to sanitize session name
@@ -19,7 +14,7 @@ sanitize_name() {
 
 # Function to check if tmux is running
 is_tmux_running() {
-    pgrep tmux > /dev/null
+    pgrep tmux >/dev/null
 }
 
 # Function to create or attach to session
@@ -29,7 +24,7 @@ manage_session() {
     session_name=$(sanitize_name "$selected")
 
     # Create new session if it doesn't exist
-    if ! tmux has-session -t="$session_name" 2> /dev/null; then
+    if ! tmux has-session -t="$session_name" 2>/dev/null; then
         tmux new-session -ds "$session_name" -c "$selected"
     fi
 
@@ -39,10 +34,10 @@ manage_session() {
     else
         tmux switch-client -t "$session_name"
     fi
-    }
+}
 
-    # Main execution
-    main() {
+# Main execution
+main() {
     local selected
     selected=$(select_project "$@") || true
 

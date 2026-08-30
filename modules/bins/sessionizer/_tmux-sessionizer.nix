@@ -5,7 +5,6 @@
   tmux,
   procps,
   findutils,
-  projects-dir ? "$HOME/projects",
   picker ?
     writeShellApplication {
       name = "tmux-sessionizer-picker";
@@ -17,7 +16,7 @@ writeShellApplication {
   name = "tmux-sessionizer";
   runtimeInputs = [tmux procps findutils];
   text = ''
-    export PROJECTS_DIR="${projects-dir}"
+    export PROJECTS_DIR="${builtins.getEnv "HOME"}/projects"
     export SESSIONIZER_PICKER="${lib.getExe picker}"
     ${builtins.readFile ./tmux-sessionizer.sh}
   '';
